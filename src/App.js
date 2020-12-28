@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import CounterApp from "./components/Counter.mjs";
+import useState1 from "./hooks/useState1";
 
-function App() {
+const App = () => {
+  // have to access `foo()` like that cus its a function
+  const [foo, setFoo] = useState1(0);
+
+  const onClickHandler = () => {
+    setFoo(foo() + 1);
+    console.log({ "foo() in App": foo() });
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <>
+      <div> 
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Foo: {foo()}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <button onClick={onClickHandler}>
+          set foo
+        </button>
+      </div>
+      {/* <CounterApp /> */}
+    </>
   );
 }
 
